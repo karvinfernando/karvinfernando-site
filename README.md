@@ -59,19 +59,14 @@ Not registered yet. Once it is:
 
 ## Contact form (Formspree)
 
-`contact.html` posts to Formspree via AJAX (no page redirect). It is **not live yet** —
-until configured, submitting shows a "not connected" note.
-
-To activate:
-
-1. Create a free account at <https://formspree.io>, add a form, copy its endpoint
-   (looks like `https://formspree.io/f/abcdwxyz`).
-2. In `contact.html`, replace **both** occurrences of `FORMSPREE_ID` (the `action` and
-   `data-endpoint` attributes on `<form class="contact-form">`) with your form ID.
-3. Commit and push. Submit a test message and confirm the email arrives; approve the
-   sender address in Formspree if prompted.
+`contact.html` posts to Formspree via AJAX (no page redirect), form ID `mgaenedy`
+(endpoint `https://formspree.io/f/mgaenedy`). Submissions email the Formspree account
+owner (karvinfernando@gmail.com).
 
 The form includes a hidden `_gotcha` honeypot field for spam filtering.
+
+To point it at a different form, replace both occurrences of the endpoint (the `action`
+and `data-endpoint` attributes on `<form class="contact-form">`) in `contact.html`.
 
 Swap Formspree for a serverless function later if volume or routing needs grow — the
 form markup is standard `multipart/form-data`.
