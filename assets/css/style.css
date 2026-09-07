@@ -608,6 +608,7 @@ body { counter-reset: sec; }
 }
 @media (max-width: 900px) {
   .two-col { grid-template-columns: 1fr; }
+  .two-col .media-frame.tall { aspect-ratio: 3 / 2; }
 }
 
 form.contact-form {

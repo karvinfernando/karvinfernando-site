@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }).then(function (res) {
         if (res.ok) {
           form.reset();
-          if (note) note.textContent = 'Thanks — your message is through. I’ll get back to you.';
+          if (note) note.textContent = 'Thanks — the message is through. Karvin will get back to you.';
         } else {
           return res.json().then(function (body) {
             var msg = (body && body.errors && body.errors.map(function (x) { return x.message; }).join(', ')) ||
