@@ -62,13 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
     carousel.addEventListener('mouseenter', function () { clearInterval(autoplay); });
   });
 
-  /* placeholder video play button -> visual only, no real video attached yet */
-  document.querySelectorAll('[data-video-placeholder]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      el.querySelector('.ph-label').textContent = 'Video placeholder — attach final file to activate playback';
-    });
-  });
-
   /* contact form -> Formspree (AJAX submit, no page redirect) */
   var form = document.querySelector('.contact-form');
   if (form) {
@@ -96,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }).then(function (res) {
         if (res.ok) {
           form.reset();
-          if (note) note.textContent = 'Thanks — your message is through. I’ll get back to you.';
+          if (note) note.textContent = 'Thanks — the message is through. Karvin will get back to you.';
         } else {
           return res.json().then(function (body) {
             var msg = (body && body.errors && body.errors.map(function (x) { return x.message; }).join(', ')) ||
