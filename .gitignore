@@ -12,3 +12,7 @@
 # Node (not used for the build, but keep noise out)
 node_modules/
 npm-debug.log*
+
+# Image drop zone — raw originals, not deployed. Claude crops/optimizes
+# these into assets/img/. Safe to leave full-size files here.
+assets/img/_incoming/
