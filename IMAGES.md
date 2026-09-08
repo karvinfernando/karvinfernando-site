@@ -1,40 +1,61 @@
-# Images — what goes where
+# Images — how to change them
 
-## How to send images to Claude
+## The fastest way to swap an image
 
-1. Open this project folder in Finder:
-   `/Users/karvinfernando/Personal Website Dev`
-2. Drop your files into **`assets/img/_incoming/`** — any filename, any size.
-   Phone photos, exports, screenshots all fine. That folder is git-ignored,
-   so nothing is published until it's processed.
-3. Tell Claude which slot each file is for (use the IDs in the table below).
-   Claude crops, converts to grayscale-friendly, compresses, renames, and
-   wires each one into the page.
+Each image is a file in `assets/img/` with a fixed name. Replace the file,
+**keep the exact same filename**, and the site updates — no code touched,
+live in ~1 minute.
 
-You can also paste/attach images straight into the chat if you only have one
-or two.
+**In the browser (nothing to install):**
+1. Go to https://github.com/karvinfernando/karvinfernando-site/tree/main/assets/img
+2. **Add file → Upload files**, drag your new image in with the *same filename*
+3. "Commit changes" → Vercel redeploys automatically
 
-## Slots
+**Locally:** drop files in `assets/img/_incoming/` (git-ignored) and tell Claude,
+or just replace the file in `assets/img/` directly and `git push`.
 
-| ID | Page | Where | Current | Target crop | Notes |
-|----|------|-------|---------|-------------|-------|
-| `banner-film` | Home | Full-bleed "Film" strip | **sample stock** | ~21:9, ≥2000px wide | Director/DP at work — on set, camera, crew, atmosphere |
-| `banner-clear-media` | Home | Full-bleed "Clear Media" strip | **sample stock** | ~21:9, ≥2000px wide | The team + operation at scale — a populated production floor |
-| `banner-investments` | Home | Full-bleed "Investments" strip | **sample stock** | ~21:9, ≥2000px wide | Big infrastructure — the CPS soundstage / lighting grid, scale |
-| `home-closing` | Home | Closing "Start a project" block | placeholder box | 4:5 portrait | Portrait or behind-the-scenes of Karvin |
-| `film-intro-video` | Film | Intro video | placeholder box | 16:9 video file (mp4) | Karvin on the state of film in Sri Lanka |
-| `film-still-1` … `film-still-5` | Film | Stills carousel | placeholder boxes | ~21:9, ≥1800px wide | Production stills / BTS frames from Homecoming + DP work |
-| `clear-media-photo` | Clear Media | Origin section | placeholder box | 4:5 portrait | Team or studio photo |
-| `investments-photo` | Investments | Flagship section | placeholder box | 4:5 portrait | Colombo Production Studio facility |
-| `about-portrait` | About | Hero, beside bio | placeholder box | 4:5 portrait | Portrait of Karvin |
-| `og-cover` | all | Link-preview image | missing | 1200×630 exactly | Used when the site is shared on social / messaging |
-| `instagram-url` / `linkedin-url` | all | Footer links | `#` | — | Not images — just send the two profile URLs |
+Keep them **JPG**, ideally under ~400 KB. Send bigger and Claude will compress.
+The site renders every photo **grayscale** — send colour, it desaturates.
 
-## Design treatment (applied automatically)
+---
 
-- All photos are rendered **grayscale** with slightly raised contrast to match
-  the monochrome system. Send them in colour; the site desaturates them.
-- Banners get a left-side dark scrim so the overlaid text stays readable, plus
-  a slow zoom on hover.
-- Shoot/select with a **quiet zone on one side** (wall, sky, floor) where text
-  can sit, and enough contrast to survive the scrim.
+## Every slot
+
+| Filename | Page — where | Crop ratio | Export at | Re-crops on mobile? |
+|---|---|---|---|---|
+| `banner-film.jpg` | Home — "Film" strip | full-bleed (~12:5) | 2400 × 1040 | yes — see below |
+| `banner-clear-media.jpg` | Home — "Clear Media" strip | full-bleed (~12:5) | 2400 × 1040 | yes |
+| `banner-investments.jpg` | Home — "Investments" strip | full-bleed (~12:5) | 2400 × 1040 | yes |
+| `home-closing.jpg` | Home — closing block | 4:5 | 1200 × 1500 | → 3:2 |
+| `about-portrait.jpg` | About — beside the bio | 4:5 | 1200 × 1500 | → 3:2 |
+| `clear-media-team.jpg` | Clear Media — origin section | 4:5 | 1200 × 1500 | → 3:2 |
+| `investments-studio.jpg` | Investments — flagship section | 4:5 | 1200 × 1500 | → 3:2 |
+| `film-intro.jpg` | Film — intro block | 16:9 | 1920 × 1080 | no — exact |
+| `film-still-1.jpg` … `-5.jpg` | Film — stills carousel | 21:9 | 2000 × 858 | no — exact |
+| `og-cover.jpg` | all — link-preview image | 1.91:1 | 1200 × 630 | n/a |
+
+Footer **Instagram / LinkedIn** links are still `#` — not images, just send the
+two profile URLs.
+
+---
+
+## Getting the crop exactly right
+
+**Fixed-ratio slots — `film-still-*` (21:9) and `film-intro` (16:9):**
+Crop to the ratio and export. What you see is exactly what the site shows,
+every screen. WYSIWYG.
+
+**4:5 portrait slots** (`about-portrait`, `clear-media-team`,
+`investments-studio`, `home-closing`):
+Desktop shows your full 4:5. **Below 900px wide the frame becomes 3:2** — it
+keeps a centre horizontal band and clips the **top and bottom** of your image.
+→ Keep the subject **vertically centred**; leave the top and bottom ~15% free
+of anything essential (top of head, feet, captions).
+
+**Banner slots** (`banner-*`):
+Full-bleed, so the visible slice changes with the window — a wide letterbox on
+desktop, a near-square centre slice on a phone. It always crops **from the
+centre, both axes**.
+→ Compose with the subject **centred**, generous margin all around. Assume the
+outer ~20% on every edge is "bleed" that may be cut. The caption sits centre-left
+over a dark scrim, so that area can be busy — it doesn't need to be empty.
