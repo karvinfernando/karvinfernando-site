@@ -449,7 +449,7 @@ body { counter-reset: sec; }
 }
 .carousel-track {
   position: relative;
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 1.9 / 1;
   overflow: hidden;
 }
 .carousel-slide {
@@ -464,7 +464,7 @@ body { counter-reset: sec; }
   pointer-events: none;
 }
 .carousel-slide.active { opacity: 1; pointer-events: auto; }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.04); }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
 .carousel-caption {
   position: absolute;
   left: 0; bottom: 0; right: 0;
