@@ -394,6 +394,7 @@ body { counter-reset: sec; }
   filter: grayscale(1) contrast(1.04);
 }
 .media-frame:has(img) { border-style: solid; border-color: var(--border); }
+.media-frame.is-color img { filter: none; }
 .media-frame .ph-label {
   font-family: var(--mono);
   font-size: 11px;
